@@ -13,6 +13,7 @@ namespace game
         private int NumberOfPlayers { get; }
         private readonly List<Player> _players = new List<Player>();
         private int _boardSize;
+        public int Turns => PlayCount/_boardSize;
         private readonly Random _rand;
         public int PlayCount { get; set; }
         public bool Finish { get; set; }

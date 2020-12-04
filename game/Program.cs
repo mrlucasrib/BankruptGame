@@ -6,7 +6,7 @@ namespace game
     {
         static void Main(string[] args)
         {
-            if (args.Length == 0)
+            if (args.Length < 1)
                 return;
             var board = new Board(args[0],
                 int.Parse(Console.ReadLine() ?? throw new Exception("Number of players can't null")), 
@@ -46,12 +46,13 @@ namespace game
                     }
                 }
 
-                if (board.PlayCount >= 10000 || board.HasWinner())
+                if (board.Turns >= 10000 || board.HasWinner())
                     board.Finish = true;
                 board.PlayCount++;
             }
 
-            Console.WriteLine($"Acabou com {board.PlayCount} jogadas e o ganhador {board.Winner.Name}");
+            var winner = board.Winner.Name ?? "nobody";
+            Console.Write($"The game end with {board.Turns} rounds and {winner} won");
         }
     }
 }
