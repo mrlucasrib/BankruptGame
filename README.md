@@ -27,7 +27,7 @@ Execulte os comandos no terminal:
 
 ```sh
 cd game
-dotnet publish -c Release -o Release --self-contained false
+dotnet publish -c release -o release
 cd ../player
 python3 main.py
 ```
@@ -35,3 +35,13 @@ python3 main.py
 ***Obs:*** Se estiver utilizando Windows traduza as instruções conforme seu computador esta configurado (Ex: python3 pode nao corresponder ao execultavel do python)
 
 > No Windows deve-se mudar a variavel GAME_PATH em `settings.py` e adicionar .exe ao final de game.
+
+# Execultado rapidamente (para Windows)
+
+Por praticidade, compilei o programa para windows, assim será apenas necessario o interpretador do **Python**.
+Renomeie o `setting_win.py` para `settings.py`.
+Obs: Os binarios necessaros estam apenas no arquivo zipado. Não incluido no repositorio git. Para excecultar a partir do repositorio é necessario compilar o jogo.
+
+# Saida
+A saida do programa se encontra em `players/output.txt`.
+O arquivo de log e o CSV de resultados estão disponiveis no arquivo zip

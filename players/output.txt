@@ -1,0 +1,9 @@
+Running...
+Time-out rounds: 72
+Average duration of a match: 21.216666666666665 Percent of victort:
+
+Impulsive: 38.333333333333336
+Demanding: 19.333333333333332
+Cautious: 18.333333333333332
+Random: 0.0
+Behavor Winner Impulsive
