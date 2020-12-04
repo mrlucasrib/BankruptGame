@@ -2,21 +2,22 @@ import play
 import settings
 import random
 import operator
-random.seed(123456)
+random.seed(settings.SEED)
 result = list()
 seeds = list()
+seed = int()
 number_of_repetions = settings.NUMBER_OF_REPETIONS
 
 print("Running...")
 for i in range(number_of_repetions):
     while True:
-        settings.SEED = random.randint(88888, 99999999)
-        if settings.SEED not in seeds:
-            seeds.append(settings.SEED)
+        seed = random.randint(88888, 99999999)
+        if seed not in seeds:
+            seeds.append(seed)
             break
     result.append(play.execute(settings.GAME_PATH,
                                settings.CONF_PATH,
-                               str(settings.SEED)))
+                               str(seed)))
 
 rounds_time_out = 0
 total_rounds = 0
