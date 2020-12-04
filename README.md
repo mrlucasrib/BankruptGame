@@ -1,6 +1,6 @@
 # BankruptGame
 
-# Sobre
+## Sobre
 
 Como esta é uma prova de estagio, decidi fazer em duas linguagens diferentes usando comunicação de subprocessos.
 
@@ -14,21 +14,24 @@ Como esta é uma prova de estagio, decidi fazer em duas linguagens diferentes us
 - A pasta `game` se encontra o jogo e a pasta `players` os jogadores.
 - Os programas utilizam **seeds** para garantir reprodutibilidade. É possivel alterar em `settings.py` para receber reultados diferentes.
 - O arquivo `settings.py` contem os filepaths para a comunicação entre o player e o jogo.
+- ***A execução do player é demorada, para teste, considere reduzir em `settings.txt` o numero de vezes que será executado***
 
 ## Requsitos
 
 - .NET CORE 5 e **dotnet cli**
 - Python 3+
 
-
 ## Como Utilizar
+
 Execulte os comandos no terminal:
+
 ```sh
 cd game
 dotnet publish -c Release -o Release --self-contained false
 cd ../player
 python3 main.py
 ```
+
 ***Obs:*** Se estiver utilizando Windows traduza as instruções conforme seu computador esta configurado (Ex: python3 pode nao corresponder ao execultavel do python)
 
 > No Windows deve-se mudar a variavel GAME_PATH em `settings.py` e adicionar .exe ao final de game.
