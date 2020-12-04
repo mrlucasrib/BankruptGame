@@ -50,11 +50,12 @@ namespace game
         {
             for (int i = 0; i < this.NumberOfPlayers; ++i)
             {
-                Console.WriteLine("Type name");
+                Console.WriteLine("Type player's name");
                 var name = Console.ReadLine();
                 this._players.Add(new Player {Coins = 300, Name = name});
 
             }
+            this.Shuffle(this._players);
         }
         public int playDice()
         {
@@ -84,5 +85,20 @@ namespace game
         }
 
         public Player Winner => _players.Find(x => x.Active.Equals(true));
+        
+        /// <summary>
+        /// Shuffle a list, by: https://stackoverflow.com/questions/273313/randomize-a-listt
+        /// </summary>
+        private void Shuffle<T>(IList<T> list)  
+        {  
+            int n = list.Count;  
+            while (n > 1) {  
+                n--;  
+                int k = _rand.Next(n + 1);  
+                T value = list[k];  
+                list[k] = list[n];  
+                list[n] = value;  
+            }  
+        }
     }
 }
