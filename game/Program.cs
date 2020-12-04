@@ -6,8 +6,14 @@ namespace game
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to Bankrupt Game!");
             if (args.Length < 1)
-                return;
+            {
+                Console.WriteLine("Please send parameters when running the program");
+                Environment.Exit(0);
+            }
+
+            Console.WriteLine("Enter the number of players");
             var board = new Board(args[0],
                 int.Parse(Console.ReadLine() ?? throw new Exception("Number of players can't null")), 
                 int.Parse(args[1]));
