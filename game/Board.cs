@@ -94,7 +94,18 @@ namespace game
             return count == 1;
         }
 
-        public Player Winner => _players.Find(x => x.Active.Equals(true));
+        public Player Winner {
+            get
+            {
+                foreach (var player in _players)
+                {
+                    if (player.Active)
+                        return player;
+                }
+
+                return null;
+            }
+        }
         
         /// <summary>
         /// Shuffle a list, by: https://stackoverflow.com/questions/273313/randomize-a-listt
