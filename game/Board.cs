@@ -1,26 +1,35 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
 
 namespace game
 {
-    public class Board
+   public class Board
     {
-        private List<Property> _properties = new List<Property>();
+        private readonly List<Property> _properties = new List<Property>();
+        /// <summary>
+        /// Takes the current property based on the current player
+        /// </summary>
         public Property Property => _properties[this.ActualPlayer.NumberOfMoves % this._boardSize];
         private int NumberOfPlayers { get; }
-        private List<Player> _players = new List<Player>();
+        private readonly List<Player> _players = new List<Player>();
         private int _boardSize;
-        private static int seed = 251415474;
-        private Random rand = new Random(seed);
-        public int PlayCount { get; set; } = 0;
-        public bool Finish { get; set; } = false;
+        private readonly Random _rand;
+        public int PlayCount { get; set; }
+        public bool Finish { get; set; }
+        /// <summary>
+        /// Takes the current player.
+        ///
+        /// The rest of the division will always give a number from one to the maximum number of players.
+        /// </summary>
         public Player ActualPlayer => _players[this.PlayCount % this.NumberOfPlayers];
 
-        public Board(string configFile, int numberOfPlayers)
+        public Board(string configFile, int numberOfPlayers, int seed)
         {
             NumberOfPlayers = numberOfPlayers;
+            this._rand = new Random(seed);
             SetupProperties(configFile);
+            PlayCount = 0;
+            Finish = false;
         }
 
         private void SetupProperties(string fileName)
@@ -57,9 +66,9 @@ namespace game
             }
             this.Shuffle(this._players);
         }
-        public int playDice()
+        public int PlayDice()
         {
-            int dice = this.rand.Next(1,6);
+            var dice = this._rand.Next(1,6);
             ActualPlayer.NumberOfMoves += dice;
             // !(Dice > boardSize)
             if (ActualPlayer.NumberOfMoves / this._boardSize != ActualPlayer.Turns)
@@ -72,9 +81,9 @@ namespace game
 
         }
 
-        public bool hasWinner()
+        public bool HasWinner()
         {
-            int count = 0;
+            var count = 0;
             foreach (var player in _players)
             {
                 if (player.Active)

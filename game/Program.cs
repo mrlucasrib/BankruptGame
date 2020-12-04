@@ -6,17 +6,18 @@ namespace game
     {
         static void Main(string[] args)
         {
-            // Console.WriteLine("Hello World!");
-            
-            var board = new Board("/home/lucas/Documentos/gameConfig.txt",
-                int.Parse(Console.ReadLine() ?? throw new Exception("Number of players can't null")));
+            if (args.Length == 0)
+                return;
+            var board = new Board(args[0],
+                int.Parse(Console.ReadLine() ?? throw new Exception("Number of players can't null")), 
+                int.Parse(args[1]));
             board.SetupPlayers();
             while (!board.Finish)
             {
                 if (board.ActualPlayer.Active)
                 {
                     Console.WriteLine($"It's the {board.ActualPlayer}'s turn");
-                    Console.WriteLine($"The die was rolled and the player moved {board.playDice()} squares");
+                    Console.WriteLine($"The die was rolled and the player moved {board.PlayDice()} squares");
                     if (board.Property.HasOwner())
                     {
                         if (board.Property.Owner != board.ActualPlayer)
@@ -45,7 +46,7 @@ namespace game
                     }
                 }
 
-                if (board.PlayCount >= 10000 || board.hasWinner())
+                if (board.PlayCount >= 10000 || board.HasWinner())
                     board.Finish = true;
                 board.PlayCount++;
             }
