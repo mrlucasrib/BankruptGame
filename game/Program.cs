@@ -39,7 +39,10 @@ namespace game
                         Console.WriteLine($"{board.ActualPlayer} fell on an unowned property");
                         if (board.ActualPlayer.Coins >= board.Property.Price)
                         {
-                            Console.WriteLine($"You wish buy the property? Cost: {board.Property.Price} coins y/n");
+                            Console.WriteLine(
+                                $"Do you wish buy the property? Cost: {board.Property.Price} coins, " +
+                                $"Rent Value: {board.Property.RentValue} " +
+                                $"You have {board.ActualPlayer.Coins} coins. y/n");
                             var answer = Console.ReadLine() == "y";
                             if (answer)
                             {
@@ -58,7 +61,7 @@ namespace game
             }
 
             var winner = board.Winner.Name ?? "nobody";
-            Console.Write($"The game end with {board.Turns} rounds and {winner} won");
+            Console.Write($"Winner: {winner} Rounds: {board.Turns}");
         }
     }
 }
